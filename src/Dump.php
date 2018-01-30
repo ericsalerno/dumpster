@@ -27,10 +27,11 @@ class Dump
     /**
      * Dump constructor.
      * @param $contextObject
+     * @param $objectName
      *
      * @return $this
      */
-    public function __construct($contextObject)
+    public function __construct($contextObject, $objectName = 'Debug Object')
     {
         $suppression = getenv('DUMPSTER_SUPPRESS');
         if (!empty($suppression)) $this->proceed = false;
@@ -48,34 +49,57 @@ class Dump
             ]);
         }
 
-        $this->contextObject = new ObjectDefinition('', $contextObject);
+        $this->contextObject = new ObjectDefinition($objectName, $contextObject);
 
         return $this;
     }
 
     /**
      * Output the dump contents
-     *
-     * @return $this
      */
     public function output()
     {
         if (empty($this->proceed))
         {
-            return $this;
+            return;
         }
 
+        echo $this->buildOutput();
+
+        die();
+    }
+
+    /**
+     * Retrieve the dump contents
+     *
+     * @return string
+     */
+    public function getOutput()
+    {
+        if (empty($this->proceed))
+        {
+            return 'Dump Output Suppressed';
+        }
+
+        return $this->buildOutput();
+    }
+
+    /**
+     * Build the output string
+     *
+     * @return string
+     */
+    private function buildOutput()
+    {
         if (!empty($this->mustache))
         {
-            $output = $this->mustache->render('dump.mustache', ['object'=>$this->contextObject]);
+            $output = $this->mustache->render('dump.mustache', $this->contextObject);
         }
         else
         {
             $output = 'Some text representation when mustache is not available.';
         }
 
-        echo $output;
-
-        die();
+        return $output;
     }
 }

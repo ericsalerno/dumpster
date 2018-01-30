@@ -21,10 +21,11 @@
     "preferred-install": "dist"
   },
   "require-dev": {
-    "phpunit/phpunit": "^6.4"
-  },
-  "require": {
+    "phpunit/phpunit": "^6.4",
     "mustache/mustache": "^2.12"
+  },
+  "suggest": {
+    "mustache/mustache": "Provides mustache template output of the object dump output."
   },
   "autoload": {
     "psr-4": {

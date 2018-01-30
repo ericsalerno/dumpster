@@ -1,0 +1,29 @@
+{{# isScalar}}
+<div class="definition scalar">
+    <div class="name">{{getName}}</div>
+    <div class="type">{{getType}}</div>
+    <div class="value">{{getValue}}</div>
+</div>
+{{/ isScalar}}
+{{# isArray}}
+<div class="definition array">
+    <div class="name">{{getName}}</div>
+    <div class="type">{{getType}} ({{getCount}})</div>
+    <div class="value">
+    {{# getChildren}}
+        {{> node}}
+    {{/ getChildren}}
+    </div>
+</div>
+{{/ isArray}}
+{{# isObject}}
+<div class="definition object">
+    <div class="name">{{getName}}</div>
+    <div class="type">{{getType}} ({{getCount}})</div>
+    <div class="value">
+    {{# getChildren}}
+        {{> node}}
+    {{/ getChildren}}
+    </div>
+</div>
+{{/ isObject}}

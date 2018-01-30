@@ -54,7 +54,7 @@ class ObjectDefinition
         else if (is_object($object))
         {
             $this->type = 'object';
-            $this->value = 'Object';
+            $this->value = get_class($object);
             $this->children = [];
 
             foreach ($object as $key => $value)
@@ -74,9 +74,13 @@ class ObjectDefinition
             {
                 $this->type = 'string';
             }
-            elseif (is_numeric($object))
+            elseif (is_numeric($object) || is_integer($object) || is_float($object) || is_double($object))
             {
                 $this->type = 'number';
+            }
+            elseif (is_bool($object))
+            {
+                $this->type = 'boolean';
             }
             elseif (is_resource($object))
             {
@@ -87,7 +91,7 @@ class ObjectDefinition
                 $this->type = 'scalar';
             }
 
-            $this->value = $object;
+            $this->value = (string)$object;
         }
     }
 
@@ -137,5 +141,42 @@ class ObjectDefinition
     public function getChildren()
     {
         return $this->children;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount()
+    {
+        return count($this->children);
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getValue()
+    {
+        if ($this->type == 'boolean')
+        {
+            return $this->value ? 'true' : 'false';
+        }
+
+        return $this->value;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

@@ -1,6 +1,6 @@
 # dumpster
 
-PHP Object Dump Utility
+PHP Object Dump Utility. We all know the only way to debug your code is to step-through it with a debugger, like xdebug. Every now and then you end up in a situation where for some reason you can't and you have to fall back on your baser instincts and dump out object data. But var_dump and print_r can be ugly or overwhelming. That's where dumpster comes in.
 
 ## Object Dump Usage
 
