@@ -17,7 +17,7 @@ This should work with all scalar, array, or object values.
 
 You should get an example output of something like below:
 
-![Image of Example](./doc/exmaple-output.png)
+![Image of Example](./doc/example-output.png)
 
 
 ## Environment-Level Dump Suppression
