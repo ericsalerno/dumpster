@@ -49,7 +49,7 @@ class Dump
             ]);
         }
 
-        $this->contextObject = new ObjectDefinition($objectName, $contextObject);
+        $this->contextObject = new ObjectDefinition($objectName, $contextObject, 0);
 
         return $this;
     }

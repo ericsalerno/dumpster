@@ -1,29 +1,25 @@
+<div class="definition">
 {{# isScalar}}
-<div class="definition scalar">
-    <div class="name">{{getName}}</div>
-    <div class="type">{{getType}}</div>
-    <div class="value">{{getValue}}</div>
-</div>
+    <div class="scalar-name">{{getName}}</div>
+    <div class="scalar-type">{{getType}}</div>
+    <div class="scalar-value">{{getValue}}</div>
 {{/ isScalar}}
 {{# isArray}}
-<div class="definition array">
-    <div class="name">{{getName}}</div>
-    <div class="type">{{getType}} ({{getCount}})</div>
-    <div class="value">
+    <div class="array-name"><a href="javascript:;" class="list-toggle btn btn-default">+</a> {{getName}}</div>
+    <div class="array-type">{{getType}} ({{getCount}} items)</div>
+    <div class="array-value child-items">
     {{# getChildren}}
         {{> node}}
     {{/ getChildren}}
     </div>
-</div>
 {{/ isArray}}
 {{# isObject}}
-<div class="definition object">
-    <div class="name">{{getName}}</div>
-    <div class="type">{{getType}} ({{getCount}})</div>
-    <div class="value">
+    <div class="object-name"><a href="javascript:;" class="list-toggle btn btn-default">+</a> {{getName}}</div>
+    <div class="object-type">{{getValue}} ({{getCount}} fields)</div>
+    <div class="object-value child-items">
     {{# getChildren}}
         {{> node}}
     {{/ getChildren}}
     </div>
-</div>
 {{/ isObject}}
+</div>

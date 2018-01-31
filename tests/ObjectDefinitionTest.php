@@ -15,7 +15,7 @@ class ObjectDefinitionTest extends \PHPUnit\Framework\TestCase
      */
     public function testScalarCreation($isValidScalar, $testName, $value)
     {
-        $definition = new \Dumpster\ObjectDefinition($testName, $value);
+        $definition = new \Dumpster\ObjectDefinition($testName, $value, 0);
 
         $this->assertEquals($isValidScalar, $definition->isScalar());
     }
@@ -31,7 +31,7 @@ class ObjectDefinitionTest extends \PHPUnit\Framework\TestCase
             [true, 'test3', null],
             [true, 'test4', true],
             [false, 'test5', new \stdClass()],
-            [false, 'test6', new \Dumpster\ObjectDefinition('subTest', null)],
+            [false, 'test6', new \Dumpster\ObjectDefinition('subTest', null, 0)],
             [false, 'test7', []],
             [false, 'test8', ['item1']],
             [false, 'test9', ['item1'=>true]],
@@ -46,7 +46,7 @@ class ObjectDefinitionTest extends \PHPUnit\Framework\TestCase
      */
     public function testArrayCreation($isValidArray, $testName, $value)
     {
-        $definition = new \Dumpster\ObjectDefinition($testName, $value);
+        $definition = new \Dumpster\ObjectDefinition($testName, $value, 0);
 
         $this->assertEquals($isValidArray, $definition->isArray());
     }
@@ -62,7 +62,7 @@ class ObjectDefinitionTest extends \PHPUnit\Framework\TestCase
             [false, 'test3', null],
             [false, 'test4', true],
             [false, 'test5', new \stdClass()],
-            [false, 'test6', new \Dumpster\ObjectDefinition('subTest', null)],
+            [false, 'test6', new \Dumpster\ObjectDefinition('subTest', null, 0)],
             [true, 'test7', []],
             [true, 'test8', ['item1']],
             [true, 'test9', ['item1'=>true]],
@@ -77,7 +77,7 @@ class ObjectDefinitionTest extends \PHPUnit\Framework\TestCase
      */
     public function testObjectCreation($isValidObject, $testName, $value)
     {
-        $definition = new \Dumpster\ObjectDefinition($testName, $value);
+        $definition = new \Dumpster\ObjectDefinition($testName, $value, 0);
 
         $this->assertEquals($isValidObject, $definition->isObject());
     }
@@ -93,7 +93,7 @@ class ObjectDefinitionTest extends \PHPUnit\Framework\TestCase
             [false, 'test3', null],
             [false, 'test4', true],
             [true, 'test5', new \stdClass()],
-            [true, 'test6', new \Dumpster\ObjectDefinition('subTest', null)],
+            [true, 'test6', new \Dumpster\ObjectDefinition('subTest', null, 0)],
             [false, 'test7', []],
             [false, 'test8', ['item1']],
             [false, 'test9', ['item1'=>true]],

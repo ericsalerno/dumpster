@@ -20,9 +20,9 @@ class DumpTest extends \PHPUnit\Framework\TestCase
         $output = $dumper->getOutput();
 
         $this->assertContains('<head>', $output);
-        $this->assertContains('<div class="definition scalar">', $output);
-        $this->assertContains('<div class="type">string</div>', $output);
-        $this->assertContains('<div class="value">Hello</div>', $output);
+        $this->assertContains('<div class="definition">', $output);
+        $this->assertContains('<div class="scalar-type">string</div>', $output);
+        $this->assertContains('<div class="scalar-value">Hello</div>', $output);
     }
 
     /**
@@ -35,9 +35,9 @@ class DumpTest extends \PHPUnit\Framework\TestCase
         $output = $dumper->getOutput();
 
         $this->assertContains('<head>', $output);
-        $this->assertContains('<div class="definition scalar">', $output);
-        $this->assertContains('<div class="type">number</div>', $output);
-        $this->assertContains('<div class="value">15</div>', $output);
+        $this->assertContains('<div class="definition">', $output);
+        $this->assertContains('<div class="scalar-type">number</div>', $output);
+        $this->assertContains('<div class="scalar-value">15</div>', $output);
         $this->assertContains('</html>', $output);
     }
 
@@ -51,10 +51,10 @@ class DumpTest extends \PHPUnit\Framework\TestCase
         $output = $dumper->getOutput();
 
         $this->assertContains('<head>', $output);
-        $this->assertContains('<div class="definition array">', $output);
-        $this->assertContains('<div class="type">array (2)</div>', $output);
-        $this->assertContains('<div class="type">string</div>', $output);
-        $this->assertContains('<div class="value">b</div>', $output);
+        $this->assertContains('<div class="definition">', $output);
+        $this->assertContains('<div class="array-type">array (2 items)</div>', $output);
+        $this->assertContains('<div class="scalar-type">string</div>', $output);
+        $this->assertContains('<div class="scalar-value">b</div>', $output);
         $this->assertContains('</html>', $output);
     }
 
@@ -73,12 +73,12 @@ class DumpTest extends \PHPUnit\Framework\TestCase
         $output = $dumper->getOutput();
 
         $this->assertContains('<head>', $output);
-        $this->assertContains('<div class="definition object">', $output);
-        $this->assertContains('<div class="type">object (3)</div>', $output);
-        $this->assertContains('<div class="type">boolean</div>', $output);
-        $this->assertContains('<div class="type">string</div>', $output);
-        $this->assertContains('<div class="type">number</div>', $output);
-        $this->assertContains('<div class="value">hello &amp; goodbye</div>', $output);
+        $this->assertContains('<div class="definition">', $output);
+        $this->assertContains('<div class="object-type">stdClass (3 fields)</div>', $output);
+        $this->assertContains('<div class="scalar-type">boolean</div>', $output);
+        $this->assertContains('<div class="scalar-type">string</div>', $output);
+        $this->assertContains('<div class="scalar-type">number</div>', $output);
+        $this->assertContains('<div class="scalar-value">hello &amp; goodbye</div>', $output);
 
         $this->assertContains('</html>', $output);
     }

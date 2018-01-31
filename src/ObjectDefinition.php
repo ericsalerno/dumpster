@@ -30,14 +30,21 @@ class ObjectDefinition
     private $children = [];
 
     /**
+     * @var int
+     */
+    private $level = 0;
+
+    /**
      * ObjectDefinition constructor.
      *
      * @param $name
      * @param $object
+     * @param $level
      */
-    public function __construct($name, $object)
+    public function __construct($name, $object, $level)
     {
         $this->name = $name;
+        $this->level = $level;
 
         if (is_array($object))
         {
@@ -47,7 +54,7 @@ class ObjectDefinition
 
             foreach ($object as $key => $value)
             {
-                $subObject = new ObjectDefinition($key, $value);
+                $subObject = new ObjectDefinition($key, $value, $this->level + 1);
                 $this->children[] = $subObject;
             }
         }
@@ -59,7 +66,7 @@ class ObjectDefinition
 
             foreach ($object as $key => $value)
             {
-                $subObject = new ObjectDefinition($key, $value);
+                $subObject = new ObjectDefinition($key, $value, $this->level + 1);
                 $this->children[] = $subObject;
             }
         }
@@ -178,5 +185,13 @@ class ObjectDefinition
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRoot()
+    {
+        return ($this->level == 0);
     }
 }

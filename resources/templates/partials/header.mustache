@@ -1,11 +1,31 @@
-        <script src="http://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <style type="text/css">
+<script src="http://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<style type="text/css">
+    .definition { overflow: hidden; border-top: 1px solid #d7d7d7; border-left: 1px solid #d7d7d7; border-bottom: 1px solid #d7d7d7; padding: 10px; }
 
-        </style>
-        <script type="javscript">
-        $(document).ready(function(){
+    div.scalar-name { font-weight: bold; display: inline-block; }
+    div.scalar-type { font-size: 0.9em; color: #7d7d7d; display: inline-block; }
+    div.scalar-value { display: inline-block; margin: 0 0 0 30px; }
 
-        });
-        </script>
+    div.array-name { font-weight: bold; display: inline-block; }
+    div.array-type { font-size: 0.9em; color: #7d7d7d; display: inline-block; }
+    div.array-value { width: 100%; clear: left; padding: 10px 0 0 20px; }
+
+    div.object-name { font-weight: bold; display: inline-block; }
+    div.object-type { font-size: 0.9em; color: #7d7d7d; display: inline-block; }
+    div.object-value { width: 100%; clear: left; padding: 10px 0 0 20px; }
+
+    .child-items { display: none; }
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $('.list-toggle').click(function(){
+        var t = $(this);
+        if (!t.data('ci')) t.data('ci', $(this).parent().siblings('.child-items'));
+
+        t.data('ci').toggle({duration: 200, complete: function(){ if (t.html() == '+') t.html('-'); else t.html('+'); }});
+    });
+});
+</script>
