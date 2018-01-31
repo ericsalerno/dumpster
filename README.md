@@ -15,7 +15,7 @@ Or you can use the static facade to make things easier.
 
 This should work with all scalar, array, or object values.
 
-You should get an example output of something like below:
+Here is an example of what the output looks like:
 
 ![Image of Example](./doc/example-output.png)
 
