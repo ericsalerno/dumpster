@@ -83,4 +83,26 @@ class DumpTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('</html>', $output);
     }
 
+    /**
+     * Test special object dump
+     */
+    public function testSpecialObjectDump()
+    {
+        $object = [
+            new \DateTime('1/1/2018 4:30', new \DateTimeZone('America/New_York')),
+            'https://www.example.com/',
+            'testing@example.com',
+        ];
+
+        $dumper = new \Dumpster\Dump($object);
+
+        $output = $dumper->getOutput();
+
+        $this->assertContains('<head>', $output);
+        $this->assertContains('</html>', $output);
+        $this->assertContains('<div class="scalar-value">2018-01-01T04:30:00-05:00</div>', $output);
+        $this->assertContains('<div class="scalar-value"><a href="https://www.example.com/" target="_blank">https://www.example.com/</a></div>', $output);
+        $this->assertContains('<div class="scalar-value"><a href="mailto:testing@example.com">testing@example.com</a></div>', $output);
+    }
+
 }

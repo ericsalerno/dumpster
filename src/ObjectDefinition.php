@@ -35,6 +35,11 @@ class ObjectDefinition
     private $level = 0;
 
     /**
+     * @var bool
+     */
+    private $specialMap = false;
+
+    /**
      * ObjectDefinition constructor.
      *
      * @param $name
@@ -62,12 +67,20 @@ class ObjectDefinition
         {
             $this->type = 'object';
             $this->value = get_class($object);
-            $this->children = [];
 
-            foreach ($object as $key => $value)
+            if ($object instanceof \DateTime)
             {
-                $subObject = new ObjectDefinition($key, $value, $this->level + 1);
-                $this->children[] = $subObject;
+                $this->children = [new ObjectDefinition('Atom Format', $object->format(DATE_ATOM), $this->level + 1)];
+            }
+            else
+            {
+                $this->children = [];
+
+                foreach ($object as $key => $value)
+                {
+                    $subObject = new ObjectDefinition($key, $value, $this->level + 1);
+                    $this->children[] = $subObject;
+                }
             }
         }
         elseif (empty($object))
@@ -99,6 +112,19 @@ class ObjectDefinition
             }
 
             $this->value = (string)$object;
+
+            if (filter_var($this->value, FILTER_VALIDATE_EMAIL))
+            {
+                $this->type .= ' (email)';
+                $this->value = '<a href="mailto:' . $this->value . '">' . $this->value . '</a>';
+                $this->specialMap = true;
+            }
+            elseif (filter_var($this->value, FILTER_VALIDATE_URL))
+            {
+                $this->type .= ' (url)';
+                $this->value = '<a href="' . $this->value . '" target="_blank">' . $this->value . '</a>';
+                $this->specialMap = true;
+            }
         }
     }
 
@@ -193,5 +219,13 @@ class ObjectDefinition
     public function isRoot()
     {
         return ($this->level == 0);
+    }
+
+    /**
+     * @return bool
+     */
+    public function printRaw()
+    {
+        return $this->specialMap;
     }
 }

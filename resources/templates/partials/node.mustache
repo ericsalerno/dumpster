@@ -2,7 +2,7 @@
 {{# isScalar}}
     <div class="scalar-name">{{getName}}</div>
     <div class="scalar-type">{{getType}}</div>
-    <div class="scalar-value">{{getValue}}</div>
+    <div class="scalar-value">{{# printRaw}}{{{getValue}}}{{/ printRaw}}{{^ printRaw}}{{getValue}}{{/ printRaw}}</div>
 {{/ isScalar}}
 {{# isArray}}
     <div class="array-name"><a href="javascript:;" class="list-toggle btn btn-default{{# isRoot}} opened{{/ isRoot}}">+</a> {{getName}}</div>
