@@ -15,6 +15,11 @@ Or you can use the static facade to make things easier.
 
 This should work with all scalar, array, or object values.
 
+You should get an example output of something like below:
+
+![Image of Example](./doc/exmaple-output.png)
+
+
 ## Environment-Level Dump Suppression
 
 You can turn-off the Dumpster utility on an entire environment if the environment variable DUMPSTER_SUPPRESS is a non-zero value.
