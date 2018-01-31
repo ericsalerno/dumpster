@@ -70,6 +70,18 @@ class Dump
     }
 
     /**
+     * Output object facade
+     *
+     * @param $object
+     */
+    static public function object($object)
+    {
+        $dumper = new Dump($object);
+
+        $dumper->output();
+    }
+
+    /**
      * Retrieve the dump contents
      *
      * @return string

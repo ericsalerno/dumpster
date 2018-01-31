@@ -6,7 +6,12 @@ PHP Object Dump Utility. We all know the only way to debug your code is to step-
 
 You can dump the contents of an object simply by creating a dump object and performing output() on it. For example:
 
-    new \Dumpster\Dump($myDumpableObject)->output();
+    $d = new \Dumpster\Dump($myDumpableObject);
+    $d->output();
+
+Or you can use the static facade to make things easier.
+
+    \Dumpster\Dump::object($myDumpableObject);
 
 This should work with all scalar, array, or object values.
 
