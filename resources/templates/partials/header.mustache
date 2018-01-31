@@ -17,6 +17,7 @@
     div.object-value { width: 100%; clear: left; padding: 10px 0 0 20px; }
 
     .child-items { display: none; }
+    .list-toggle { font-family: monospace; }
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -24,8 +25,22 @@ $(document).ready(function(){
     $('.list-toggle').click(function(){
         var t = $(this);
         if (!t.data('ci')) t.data('ci', $(this).parent().siblings('.child-items'));
+        var items = t.data('ci');
 
-        t.data('ci').toggle({duration: 200, complete: function(){ if (t.html() == '+') t.html('-'); else t.html('+'); }});
+        if (items.data('expanded'))
+        {
+            items.css('display', 'none');
+            items.data('expanded', false);
+            t.html('+');
+        }
+        else
+        {
+            items.css('display', 'block');
+            items.data('expanded', true);
+            t.html('-');
+        }
     });
+
+    //$('.opened').click();
 });
 </script>

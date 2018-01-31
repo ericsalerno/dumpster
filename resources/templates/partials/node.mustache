@@ -7,7 +7,7 @@
 {{# isArray}}
     <div class="array-name"><a href="javascript:;" class="list-toggle btn btn-default{{# isRoot}} opened{{/ isRoot}}">+</a> {{getName}}</div>
     <div class="array-type">{{getType}} ({{getCount}} items)</div>
-    <div class="array-value child-items">
+    <div class="array-value child-items" data-expanded="false">
     {{# getChildren}}
         {{> node}}
     {{/ getChildren}}
@@ -16,7 +16,7 @@
 {{# isObject}}
     <div class="object-name"><a href="javascript:;" class="list-toggle btn btn-default{{# isRoot}} opened{{/ isRoot}}">+</a> {{getName}}</div>
     <div class="object-type">{{getValue}} ({{getCount}} fields)</div>
-    <div class="object-value child-items">
+    <div class="object-value child-items" data-expanded="false">
     {{# getChildren}}
         {{> node}}
     {{/ getChildren}}
