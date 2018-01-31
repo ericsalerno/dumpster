@@ -41,13 +41,10 @@ class Dump
             return $this;
         }
 
-        if (class_exists('\Mustache_Engine'))
-        {
-            $this->mustache = new \Mustache_Engine([
-                'loader' => new \Mustache_Loader_FilesystemLoader(__DIR__ . '/../resources/templates'),
-                'partials_loader' => new \Mustache_Loader_FilesystemLoader(__DIR__ . '/../resources/templates/partials')
-            ]);
-        }
+        $this->mustache = new \Mustache_Engine([
+            'loader' => new \Mustache_Loader_FilesystemLoader(__DIR__ . '/../resources/templates'),
+            'partials_loader' => new \Mustache_Loader_FilesystemLoader(__DIR__ . '/../resources/templates/partials')
+        ]);
 
         $this->contextObject = new ObjectDefinition($objectName, $contextObject, 0);
 
@@ -103,14 +100,7 @@ class Dump
      */
     private function buildOutput()
     {
-        if (!empty($this->mustache))
-        {
-            $output = $this->mustache->render('dump.mustache', $this->contextObject);
-        }
-        else
-        {
-            $output = 'Some text representation when mustache is not available.';
-        }
+        $output = $this->mustache->render('dump.mustache', $this->contextObject);
 
         return $output;
     }
