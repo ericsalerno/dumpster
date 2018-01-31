@@ -5,7 +5,7 @@
     <div class="scalar-value">{{getValue}}</div>
 {{/ isScalar}}
 {{# isArray}}
-    <div class="array-name"><a href="javascript:;" class="list-toggle btn btn-default">+</a> {{getName}}</div>
+    <div class="array-name"><a href="javascript:;" class="list-toggle btn btn-default{{# isRoot}} opened{{/ isRoot}}">+</a> {{getName}}</div>
     <div class="array-type">{{getType}} ({{getCount}} items)</div>
     <div class="array-value child-items">
     {{# getChildren}}
@@ -14,7 +14,7 @@
     </div>
 {{/ isArray}}
 {{# isObject}}
-    <div class="object-name"><a href="javascript:;" class="list-toggle btn btn-default">+</a> {{getName}}</div>
+    <div class="object-name"><a href="javascript:;" class="list-toggle btn btn-default{{# isRoot}} opened{{/ isRoot}}">+</a> {{getName}}</div>
     <div class="object-type">{{getValue}} ({{getCount}} fields)</div>
     <div class="object-value child-items">
     {{# getChildren}}
