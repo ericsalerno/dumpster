@@ -99,4 +99,15 @@ class ObjectDefinitionTest extends \PHPUnit\Framework\TestCase
             [false, 'test9', ['item1'=>true]],
         ];
     }
+
+    /**
+     * Test object scoping
+     */
+    public function testObjectScoping()
+    {
+        $definition = new \Dumpster\ObjectDefinition('root', new Mocks\TestObject(), 0);
+
+        $this->assertCount(3, $definition->getChildren());
+    }
 }
+

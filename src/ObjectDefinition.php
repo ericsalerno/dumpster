@@ -76,6 +76,39 @@ class ObjectDefinition
             {
                 $this->children = [];
 
+                if (class_exists('\ReflectionObject'))
+                {
+                    try
+                    {
+                        $reflectionClass = new \ReflectionObject($object);
+                        $properties = $reflectionClass->getProperties();
+
+                        foreach ($properties as $property)
+                        {
+                            $name = $property->getName();
+
+                            if ($property->isPrivate())
+                            {
+                                $name = '*' . $name;
+                            }
+                            else if ($property->isProtected())
+                            {
+                                $name = '+' . $name;
+                            }
+
+                            $property->setAccessible(true);
+                            $subObject = new ObjectDefinition($name, $property->getValue($object), $this->level + 1);
+                            $this->children[] = $subObject;
+                        }
+
+                        return;
+                    }
+                    catch (\Exception $exception)
+                    {
+                        //Do nothing, fall back on regular logic
+                    }
+                }
+
                 foreach ($object as $key => $value)
                 {
                     $subObject = new ObjectDefinition($key, $value, $this->level + 1);
